@@ -1,0 +1,36 @@
+// For format details, see https://aka.ms/devcontainer.json.
+{
+	// The label shown in the VSCode Remote Containers window
+	"name": "Generic Elixir Container",
+	"dockerComposeFile": ["../docker/docker-compose.yml"],
+	// The service connected to, in vscode terminal, after everything is started and is running.
+	// Should match the name of a service specified in the docker-compose file(s).
+	"service": "backend",
+	// The default dir/folder to start in inside of the above-mentioned "service" container: typically the location where the source code is mounted to (as specified in the docker-compose file).
+	"workspaceFolder": "/app",
+
+	// Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"mjmcloug.vscode-elixir",
+				// "jakebecker.elixir-ls",
+				"florinpatrascu.vscode-elixir-snippets"
+			]
+		}
+	}
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// This can be used to network with other containers or with the host.
+	// "forwardPorts": [4000, 4001, 5432],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "mix deps.get"
+
+	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+	// For podman in rootless mode, this is commented out due to issues, meaning the user inside the container is root (with podman on the host running in non-root mode).
+	// Change as necessary for docker, etc.
+	// "remoteUser": "vscode"
+}

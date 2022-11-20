@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      # 'context' is not set to prevent an issue with vscode remote containers using the incorrect context dir if it is provided
+      # context: .
+      dockerfile: elixir.Dockerfile
+      args:
+        # Elixir Version: 1.9, 1.10, 1.10.4, ...
+        - ELIXIR_VERSION=1.14.2
+        # Which version of nvm to install: set to "0", or remove the arg, to not install nvm (and consequently not install nodejs either)
+        - NVM_VERSION=0.39.1
+        # Which version of nodejs to install: set to "0", or remove the arg, to not install nodejs (and consequently not install nvm either)
+        - NODE_VERSION=16
+        # Whether to install hex package manager or not: '1' installs it (default), '0' or any other value does not.
+        - INSTALL_HEX=1
+    volumes:
+      # Mount the parent 'source' folder into a container's directory.
+      # If using VSCode's remote containers plugin, the 'workspaceFolder' specified in the devcontainer.json folder matches the target mount point.
+      - ../source:/app
+    env_file:
+      - config-elixir.env
+      - config-database.env
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+    depends_on:
+      - db
+
+  db:
+    image: docker.io/postgres:14.4
+    # restart: unless-stopped
+    volumes:
+      - ../dbdata:/var/lib/postgresql/data
+    env_file:
+      - config-database.env
+    ports:
+      - "${DB_PORT-5432}:5432"
