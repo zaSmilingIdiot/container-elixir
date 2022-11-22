@@ -27,12 +27,12 @@ services:
     depends_on:
       - db
 
-  db:
-    image: docker.io/postgres:14.4
-    # restart: unless-stopped
-    volumes:
-      - ../dbdata:/var/lib/postgresql/data
-    env_file:
-      - config-database.env
-    ports:
-      - "${DB_PORT-5432}:5432"
+  # db:
+  #   image: docker.io/postgres:14.4
+  #   # restart: unless-stopped
+  #   volumes:
+  #     - ../dbdata:/var/lib/postgresql/data
+  #   env_file:
+  #     - config-database.env
+  #   ports:
+  #     - "${DB_PORT-5432}:5432"
