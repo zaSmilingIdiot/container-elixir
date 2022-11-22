@@ -13,28 +13,28 @@ My need for this arose out of a desire to have:
 This section describes the basic layout of the application and where to make an customization changes:
 
 `docker/`
-    - contains docker related configuration.
-    - files:
-        * `elixir.Dockerfile`
-            - Defines the image used to create the Elixir container.
-            - Allows for optional installation of NVM and NodeJS, whether to install hex package manager, as well as optionally which version of Elixir to install (the optional aspects can be configured in the `docker-compose.yml` file).
-        * `docker-compose.yml`
-            - The services to be started up.
-            - Defaults to starting up a "backend" service (the elixir container). Included, but commented out, is a postgres database "db" service. Additional services can be defined and added here, simlar to the (commented out) "db" service, as needed.
-            - ARGS specified in the image (the dockerfile) can be set per service here.
-        * `config-*.env`
-            - Contains any container specific environment configuration. These can be included/referenced in the docker-compose.yml file for sharing configuration; see for example the "backend" service defined in `docker-compose.yml` for inclusion of the environment variables for the database. Environment can be shared using alternative docker-compose functionality, this is just one mechanism.
+* contains docker related configuration.
+* files:
+    * `elixir.Dockerfile`
+        * Defines the image used to create the Elixir container.
+        * Allows for optional installation of NVM and NodeJS, whether to install hex package manager, as well as optionally which version of Elixir to install (the optional aspects can be configured in the `docker-compose.yml` file).
+    * `docker-compose.yml`
+        * The services to be started up.
+        * Defaults to starting up a "backend" service (the elixir container). Included, but commented out, is a postgres database "db" service. Additional services can be defined and added here, simlar to the (commented out) "db" service, as needed.
+        * ARGS specified in the image (the dockerfile) can be set per service here.
+    * `config-*.env`
+        * Contains any container specific environment configuration. These can be included/referenced in the docker-compose.yml file for sharing configuration; see for example the "backend" service defined in `docker-compose.yml` for inclusion of the environment variables for the database. Environment can be shared using alternative docker-compose functionality, this is just one mechanism.
 
-`.devcontainer`
-    - VSCode definitions for setting up the container-based environment.
-    - files:
-        * `devcontainer.json`
-            - Contains the configuration for how the Dev Containers extension will start the container(s).
+`.devcontainer/`
+* VSCode definitions for setting up the container-based environment.
+* files:
+    * `devcontainer.json`
+        * Contains the configuration for how the Dev Containers extension will start the container(s).
 
-`source`
-    - Contains the application source code.
-    - By default this is mounted into the container as `/app/` (see the docker-compose.yml definition for the "backend" service).
-    - This is typically automatically created if it does not exist.
+`source/`
+* Contains the application source code.
+* By default this is mounted into the container as `/app/` (see the docker-compose.yml definition for the "backend" service).
+* This is typically automatically created if it does not exist.
 
 
 ## Setup
@@ -64,7 +64,7 @@ Can be found on the VSCode extensions marketplace. See https://code.visualstudio
 
 ##### 4. Optional: Set up Remote Containers to use podman/podman-compose instead of docker
 
-ITo use podman and podman-compose instead of docker, and both are installed, then update the following VSCode settings:
+To use podman and podman-compose instead of docker, and both are installed, update the following VSCode settings:
     * Settings > Extensions > Dev Containers > Docker Path : replace `docker` with `podman`
     * Settings > Extensions > Dev Containers > Docker Compose Path : set this to the value `podman-compose`
 
