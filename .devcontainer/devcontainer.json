@@ -22,7 +22,7 @@
 		}
 	}
 
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// Use 'forwardPorts' to make a list of ports inside the container available locally (some ports may be automatically forwarded depending on the service(s) started in the container(s)).
 	// This can be used to network with other containers or with the host.
 	// "forwardPorts": [4000, 4001, 5432],
 
@@ -31,6 +31,6 @@
 
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
 	// For podman in rootless mode, this is commented out due to issues, meaning the user inside the container is root (with podman on the host running in non-root mode).
-	// Change as necessary for docker, etc.
+	// Uncomment and change as necessary for docker.
 	// "remoteUser": "vscode"
 }
